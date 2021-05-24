@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "943244210881",
+    "project_id": "let-s-cook-7ef9a",
+    "storage_bucket": "let-s-cook-7ef9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943244210881:android:cff53a32a11b016d3b5a40",
+        "android_client_info": {
+          "package_name": "estg.cm.letscook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943244210881-kh0l6368219vggol52q84vekdsquvp95.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5jKXO7aPL-Nv47DxNHztkuzd0sxU_a2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943244210881-kh0l6368219vggol52q84vekdsquvp95.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
