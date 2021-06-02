@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Let\'s Cook</string>
+    <string name="recyclerview_item_start">INICIAR</string>
+    <string name="recyclerview_item_recipe">RECEITA</string>
+</resources>

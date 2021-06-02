@@ -6,20 +6,13 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 import estg.cm.letscook.firebase.Adapter
-import estg.cm.letscook.firebase.Ingredient
 import estg.cm.letscook.firebase.Recipe
-import estg.cm.letscook.firebase.Step
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var dbref : DatabaseReference
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var recipeArrayList: ArrayList<Recipe>
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRecipeData() {
-
         dbref = FirebaseDatabase.getInstance("https://let-s-cook-7ef9a-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Recipes")
         dbref.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -54,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
     }
 }

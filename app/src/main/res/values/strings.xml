@@ -1,3 +1,14 @@
 <resources>
+    <!--    APP    -->
     <string name="app_name">Let\'s Cook</string>
+
+    <!--    APP    -->
+    <string name="recyclerview_item_start">START</string>
+    <string name="recyclerview_item_recipe">RECIPE</string>
+
+    <string name="recyclerview_item_image" translatable="false">ITEM IMAGE</string>
+    <string name="recyclerview_item_image_start" translatable="false">START IMAGE</string>
+    <string name="recyclerview_item_image_recipe" translatable="false">RECIPE IMAGE</string>
+    <string name="recyclerview_item_image_servings" translatable="false">SERVINGS IMAGE</string>
+    <string name="recyclerview_item_image_duration" translatable="false">DURATION IMAGE</string>
 </resources>
