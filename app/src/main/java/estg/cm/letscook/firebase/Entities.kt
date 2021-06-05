@@ -11,8 +11,8 @@ class Recipe(
     val category: String = "",
     val ingredients: List<Ingredient> = emptyList(),
     val steps: List<Step> = emptyList(),
-    val totalPeople: String = "",
-    val duration: String = "",
+    val servings: Int? = null,
+    val duration: Int? = null,
     val image: String = "",
     val video: String = ""
 ): Parcelable
@@ -26,7 +26,7 @@ class Ingredient(
 @Parcelize
 class Step(
     val description: String = "",
-    val duration: String = "",
+    val duration: Int? = null,
     val video: String = ""
 ): Parcelable
 

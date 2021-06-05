@@ -16,7 +16,7 @@ import com.google.firebase.database.*
 import estg.cm.letscook.firebase.Adapter
 import estg.cm.letscook.firebase.Recipe
 
-class MainActivity : AppCompatActivity(), Adapter.onRecipeClickListener {
+class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
     private lateinit var dbref : DatabaseReference
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var recipeArrayList: ArrayList<Recipe>
@@ -54,38 +54,21 @@ class MainActivity : AppCompatActivity(), Adapter.onRecipeClickListener {
         })
     }
 
-    private fun getRecipeData() {
-        dbref = FirebaseDatabase.getInstance("https://let-s-cook-7ef9a-default-rtdb.europe-west1.firebasedatabase.app/").getReference(
-            "Recipes"
-        )
-        dbref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Log.i("getRecipeData", snapshot.toString())
-
-                if (snapshot.exists()) {
-                    for (recipeSnapshot in snapshot.children) {
-                        val recipe = recipeSnapshot.getValue(Recipe::class.java)
-                        Log.i("getRecipeData", recipeSnapshot.toString())
-                        recipeArrayList.add(recipe!!)
-                    }
-
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-    }
-
     override fun onRecipeClick(currentItem: Recipe) {
-
         val recipe =  arrayListOf<Recipe>()
-        Log.i("cucu2", currentItem.toString())
         recipe.add(currentItem)
-        Log.i("cucu3", recipe[0].title)
 
         val intent = Intent(this@MainActivity, RecipeInformation::class.java).apply {
+            putExtra("EXTRA_RECIPE", recipe)
+        }
+        startActivity(intent)
+    }
+
+    override fun onStartClick(currentItem: Recipe) {
+        val recipe =  arrayListOf<Recipe>()
+        recipe.add(currentItem)
+
+        val intent = Intent(this@MainActivity, StepRecipe::class.java).apply {
             putExtra("EXTRA_RECIPE", recipe)
         }
         startActivity(intent)

@@ -16,6 +16,8 @@ class RecipeInformation : AppCompatActivity() {
     private lateinit var titleText : TextView
     private lateinit var image: ImageView
     private lateinit var startButton : ImageView
+    private lateinit var servings: TextView
+    private lateinit var duration: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +31,8 @@ class RecipeInformation : AppCompatActivity() {
         titleText = findViewById(R.id.item_title_information)
         image = findViewById(R.id.item_image_information)
         startButton = findViewById(R.id.item_start_icon_information)
+        duration = findViewById(R.id.item_duration_information)
+        servings = findViewById(R.id.item_servings_information)
 
         startButton.setOnClickListener {
             val recipe2 =  arrayListOf<Recipe>()
@@ -49,6 +53,14 @@ class RecipeInformation : AppCompatActivity() {
                 .oval(false)
                 .build()
         Picasso.get().load(recipe?.get(0)?.image).resize(1000, 600).centerCrop().transform(transformation).into(image)
+        if(recipe?.get(0)?.duration!! > 59 ){
+            val hours = recipe[0].duration!! / 60
+            val minutes = recipe[0].duration!! % 60
+            duration.text = hours.toString().plus(getString(R.string.recipe_information_hours)).plus(" ").plus(minutes.toString()).plus(getString(R.string.recipe_information_minutes))
+        } else {
+            duration.text = recipe?.get(0)?.duration.toString().plus(getString(R.string.recipe_information_minutes))
+        }
+        servings.text = recipe?.get(0)?.servings.toString().plus(" ").plus(getString(R.string.recipe_information_servings))
 
 
 

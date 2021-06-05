@@ -11,4 +11,8 @@
     <string name="recyclerview_item_image_recipe" translatable="false">RECIPE IMAGE</string>
     <string name="recyclerview_item_image_servings" translatable="false">SERVINGS IMAGE</string>
     <string name="recyclerview_item_image_duration" translatable="false">DURATION IMAGE</string>
+    <string name="recipe_information_video">VIDEO</string>
+    <string name="recipe_information_hours" translatable="false">h</string>
+    <string name="recipe_information_minutes" translatable="false">min</string>
+    <string name="recipe_information_servings">servings</string>
 </resources>

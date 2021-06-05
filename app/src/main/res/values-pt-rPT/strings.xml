@@ -3,4 +3,6 @@
     <string name="app_name">Let\'s Cook</string>
     <string name="recyclerview_item_start">INICIAR</string>
     <string name="recyclerview_item_recipe">RECEITA</string>
+    <string name="recipe_information_video">VÍDEO</string>
+    <string name="recipe_information_servings">porções</string>
 </resources>

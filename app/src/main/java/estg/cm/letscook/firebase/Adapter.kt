@@ -1,6 +1,7 @@
 package estg.cm.letscook.firebase
 
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Color
 import android.net.wifi.hotspot2.pps.HomeSp
 import android.util.Log
@@ -22,7 +23,7 @@ import estg.cm.letscook.R
 import estg.cm.letscook.RecipeInformation
 
 
-class Adapter(private val listener: onRecipeClickListener, private val recipeList: ArrayList<Recipe>) : ListAdapter<Recipe, Adapter.MyViewHolder>(RecipesComparator())  {
+class Adapter(private val listener: OnRecipeClickListener, private val recipeList: ArrayList<Recipe>) : ListAdapter<Recipe, Adapter.MyViewHolder>(RecipesComparator())  {
         private lateinit var currentItem: Recipe
 
         class RecipesComparator : DiffUtil.ItemCallback<Recipe>() {
@@ -56,11 +57,14 @@ class Adapter(private val listener: onRecipeClickListener, private val recipeLis
                 .oval(false)
                 .build()
             Picasso.get().load(currentItem.image).resize(1000, 600).centerCrop().transform(transformation).into(holder.image)
-            holder.persons.text = currentItem.totalPeople
-            holder.duration.text = currentItem.duration
-
-            val id: String = currentItem.id
-
+            holder.servings.text = currentItem.servings.toString().plus(" ").plus(holder.servings.context.getString(R.string.recipe_information_servings))
+            if(currentItem.duration!! > 59 ){
+                val hours = currentItem.duration!! / 60
+                val minutes = currentItem.duration!! % 60
+                holder.duration.text = hours.toString().plus(holder.duration.context.getString(R.string.recipe_information_hours)).plus(" ").plus(minutes.toString()).plus(holder.duration.context.getString(R.string.recipe_information_minutes))
+            } else {
+                holder.duration.text = currentItem.duration.toString().plus(holder.duration.context.getString(R.string.recipe_information_minutes))
+            }
         }
 
         override fun getItemCount(): Int {
@@ -70,11 +74,12 @@ class Adapter(private val listener: onRecipeClickListener, private val recipeLis
         inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
             val title : TextView = itemView.findViewById(R.id.recyclerview_item_title)
             val image : ImageView = itemView.findViewById(R.id.recyclerview_item_image)
-            val persons : TextView = itemView.findViewById(R.id.recyclerview_item_servings)
+            val servings : TextView = itemView.findViewById(R.id.recyclerview_item_servings)
             val duration : TextView = itemView.findViewById(R.id.recyclerview_item_duration)
 
             init {
                 itemView.findViewById<ImageView>(R.id.recyclerview_item_recipe_icon).setOnClickListener(this)
+                itemView.findViewById<ImageView>(R.id.recyclerview_item_start_icon).setOnClickListener(this)
             }
 
             override fun onClick(v: View?) {
@@ -84,13 +89,21 @@ class Adapter(private val listener: onRecipeClickListener, private val recipeLis
                         listener.onRecipeClick(recipeList[position])
                     }
                 }
+                if (v?.findViewById<ImageView>(R.id.recyclerview_item_start_icon)?.isClickable == true){
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION){
+                        listener.onStartClick(recipeList[position])
+                    }
+                }
             }
 
 
         }
 
-        interface onRecipeClickListener{
+        interface OnRecipeClickListener{
             fun onRecipeClick(currentItem: Recipe)
+            fun onStartClick(currentItem: Recipe)
+
         }
 
 }
