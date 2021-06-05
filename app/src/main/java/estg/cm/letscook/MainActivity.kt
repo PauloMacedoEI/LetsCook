@@ -1,15 +1,22 @@
 package estg.cm.letscook
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
+import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import estg.cm.letscook.firebase.Adapter
 import estg.cm.letscook.firebase.Recipe
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Adapter.onRecipeClickListener {
     private lateinit var dbref : DatabaseReference
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var recipeArrayList: ArrayList<Recipe>
@@ -23,23 +30,45 @@ class MainActivity : AppCompatActivity() {
         recipeRecyclerView.setHasFixedSize(true)
 
         recipeArrayList = arrayListOf<Recipe>()
-        getRecipeData()
-    }
 
-    private fun getRecipeData() {
-        dbref = FirebaseDatabase.getInstance("https://let-s-cook-7ef9a-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Recipes")
-        dbref.addValueEventListener(object : ValueEventListener{
+        dbref = FirebaseDatabase.getInstance("https://let-s-cook-7ef9a-default-rtdb.europe-west1.firebasedatabase.app/").getReference(
+            "Recipes"
+        )
+        dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.i("getRecipeData", snapshot.toString())
 
-                if(snapshot.exists()){
-                    for(recipeSnapshot in snapshot.children){
+                if (snapshot.exists()) {
+                    for (recipeSnapshot in snapshot.children) {
                         val recipe = recipeSnapshot.getValue(Recipe::class.java)
                         Log.i("getRecipeData", recipeSnapshot.toString())
                         recipeArrayList.add(recipe!!)
-
                     }
-                    recipeRecyclerView.adapter = Adapter(recipeArrayList)
+                    val adapter = Adapter(this@MainActivity, recipeArrayList)
+                    recipeRecyclerView.adapter = adapter                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
+    private fun getRecipeData() {
+        dbref = FirebaseDatabase.getInstance("https://let-s-cook-7ef9a-default-rtdb.europe-west1.firebasedatabase.app/").getReference(
+            "Recipes"
+        )
+        dbref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.i("getRecipeData", snapshot.toString())
+
+                if (snapshot.exists()) {
+                    for (recipeSnapshot in snapshot.children) {
+                        val recipe = recipeSnapshot.getValue(Recipe::class.java)
+                        Log.i("getRecipeData", recipeSnapshot.toString())
+                        recipeArrayList.add(recipe!!)
+                    }
+
                 }
             }
 
@@ -48,4 +77,18 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+    override fun onRecipeClick(currentItem: Recipe) {
+
+        val recipe =  arrayListOf<Recipe>()
+        Log.i("cucu2", currentItem.toString())
+        recipe.add(currentItem)
+        Log.i("cucu3", recipe[0].title)
+
+        val intent = Intent(this@MainActivity, RecipeInformation::class.java).apply {
+            putExtra("EXTRA_RECIPE", recipe)
+        }
+        startActivity(intent)
+    }
+
 }
