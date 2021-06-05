@@ -81,7 +81,7 @@ class Adapter(private val listener: onRecipeClickListener, private val recipeLis
                 if (v?.findViewById<ImageView>(R.id.recyclerview_item_recipe_icon)?.isClickable == true){
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION){
-                        listener.onRecipeClick(currentItem)
+                        listener.onRecipeClick(recipeList[position])
                     }
                 }
             }
