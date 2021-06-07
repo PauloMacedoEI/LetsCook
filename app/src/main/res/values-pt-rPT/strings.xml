@@ -5,4 +5,6 @@
     <string name="recyclerview_item_recipe">RECEITA</string>
     <string name="recipe_information_video">VÍDEO</string>
     <string name="recipe_information_servings">porções</string>
+    <string name="recipe_information_ingredient">Ingredientes</string>
+    <string name="recipe_information_steps">Preparação</string>
 </resources>
