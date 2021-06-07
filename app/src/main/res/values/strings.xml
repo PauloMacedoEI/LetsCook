@@ -17,4 +17,10 @@
     <string name="recipe_information_servings">servings</string>
     <string name="recipe_information_ingredient">Ingredients</string>
     <string name="recipe_information_steps">Preparation</string>
+    <string name="recipeFilters_appetizers">Appetizers</string>
+    <string name="recipeFilters_breakfast">BreakFast</string>
+    <string name="recipeFilters_deserts">Deserts</string>
+    <string name="recipeFilters_vegan">Vegan</string>
+    <string name="recipeFilters_drinks">Drinks</string>
+    <string name="recipeFilters_mainDishes">Main Dishes</string>
 </resources>
