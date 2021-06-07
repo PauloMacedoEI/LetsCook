@@ -7,4 +7,10 @@
     <string name="recipe_information_servings">porções</string>
     <string name="recipe_information_ingredient">Ingredientes</string>
     <string name="recipe_information_steps">Preparação</string>
+    <string name="recipeFilters_appetizers">Entradas</string>
+    <string name="recipeFilters_breakfast">Pequeno-Almoço</string>
+    <string name="recipeFilters_deserts">Sobremesas</string>
+    <string name="recipeFilters_vegan">Vegan</string>
+    <string name="recipeFilters_drinks">Bebidas</string>
+    <string name="recipeFilters_mainDishes">Pratos Principais</string>
 </resources>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecipeFilters">
+
+    <ImageView
+        android:id="@+id/recipeFilters_appetizers"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="50dp"
+        android:alpha="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/recipeFilters_breakfast"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/recipeFilters_appetizers"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/recipeFilters_desserts"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:alpha="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipeFilters_appetizers" />
+
+    <ImageView
+        android:id="@+id/recipeFilters_drinks"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/recipeFilters_desserts"
+        app:layout_constraintTop_toBottomOf="@+id/recipeFilters_breakfast" />
+
+    <ImageView
+        android:id="@+id/recipeFilters_vegan"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:alpha="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipeFilters_desserts" />
+
+    <ImageView
+        android:id="@+id/recipeFilters_mainDishes"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/recipeFilters_vegan"
+        app:layout_constraintTop_toBottomOf="@+id/recipeFilters_drinks" />
+
+    <TextView
+        android:id="@+id/appetizers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipeFilters_appetizers"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_appetizers"
+        app:layout_constraintEnd_toEndOf="@+id/recipeFilters_appetizers"
+        app:layout_constraintStart_toStartOf="@+id/recipeFilters_appetizers"
+        app:layout_constraintTop_toTopOf="@+id/recipeFilters_appetizers" />
+
+    <TextView
+        android:id="@+id/breakfast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipeFilters_breakfast"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_breakfast"
+        app:layout_constraintEnd_toEndOf="@+id/recipeFilters_breakfast"
+        app:layout_constraintStart_toStartOf="@+id/recipeFilters_breakfast"
+        app:layout_constraintTop_toTopOf="@+id/recipeFilters_breakfast" />
+
+    <TextView
+        android:id="@+id/desserts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipeFilters_deserts"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_desserts"
+        app:layout_constraintEnd_toEndOf="@+id/recipeFilters_desserts"
+        app:layout_constraintStart_toStartOf="@+id/recipeFilters_desserts"
+        app:layout_constraintTop_toTopOf="@+id/recipeFilters_desserts" />
+
+    <TextView
+        android:id="@+id/drinks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipeFilters_drinks"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_drinks"
+        app:layout_constraintEnd_toEndOf="@+id/recipeFilters_drinks"
+        app:layout_constraintStart_toStartOf="@+id/recipeFilters_drinks"
+        app:layout_constraintTop_toTopOf="@+id/recipeFilters_drinks" />
+
+    <TextView
+        android:id="@+id/vegan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipeFilters_vegan"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_vegan"
+        app:layout_constraintEnd_toEndOf="@+id/recipeFilters_vegan"
+        app:layout_constraintStart_toStartOf="@+id/recipeFilters_vegan"
+        app:layout_constraintTop_toTopOf="@+id/recipeFilters_vegan" />
+
+    <TextView
+        android:id="@+id/maindishes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipeFilters_mainDishes"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_mainDishes"
+        app:layout_constraintEnd_toEndOf="@+id/recipeFilters_mainDishes"
+        app:layout_constraintStart_toStartOf="@+id/recipeFilters_mainDishes"
+        app:layout_constraintTop_toTopOf="@+id/recipeFilters_mainDishes" />
+</androidx.constraintlayout.widget.ConstraintLayout>

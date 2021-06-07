@@ -1,6 +1,7 @@
 package estg.cm.letscook
 
 import android.app.Activity
+import android.content.Entity
 import android.content.Intent
 import android.media.Image
 import android.os.Bundle
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val category = intent?.getStringExtra("EXTRA_CATEGORY")!!
+
         recipeRecyclerView = findViewById(R.id.recipeList)
         recipeRecyclerView.layoutManager = LinearLayoutManager(this)
         recipeRecyclerView.setHasFixedSize(true)
@@ -37,16 +40,17 @@ class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
         )
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.i("getRecipeData", snapshot.toString())
 
                 if (snapshot.exists()) {
                     for (recipeSnapshot in snapshot.children) {
-                        val recipe = recipeSnapshot.getValue(Recipe::class.java)
-                        Log.i("getRecipeData", recipeSnapshot.toString())
-                        recipeArrayList.add(recipe!!)
+                        if (recipeSnapshot.child("category").value == category) {
+                            val recipe = recipeSnapshot.getValue(Recipe::class.java)
+                            recipeArrayList.add(recipe!!)
+                        }
                     }
                     val adapter = Adapter(this@MainActivity, recipeArrayList)
-                    recipeRecyclerView.adapter = adapter                }
+                    recipeRecyclerView.adapter = adapter
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
