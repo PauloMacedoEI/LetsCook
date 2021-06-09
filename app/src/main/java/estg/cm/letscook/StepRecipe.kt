@@ -22,7 +22,7 @@ class StepRecipe : AppCompatActivity() {
     private lateinit var descriptionStep: TextView
     private lateinit var durationStep: TextView
     private lateinit var countdown: TextView
-
+//
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_step_recipe)
