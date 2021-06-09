@@ -21,7 +21,7 @@ class RecipeInformation : AppCompatActivity() {
     private lateinit var duration: TextView
     private lateinit var ingredients: TextView
     private lateinit var steps: TextView
-
+//
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
