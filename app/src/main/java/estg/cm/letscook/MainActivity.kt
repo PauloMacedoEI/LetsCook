@@ -1,15 +1,7 @@
 package estg.cm.letscook
 
-import android.app.Activity
-import android.content.Entity
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +9,6 @@ import com.google.firebase.database.*
 import estg.cm.letscook.firebase.Adapter
 import estg.cm.letscook.firebase.Recipe
 
-////
 class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
     private lateinit var dbref : DatabaseReference
     private lateinit var recipeRecyclerView: RecyclerView
