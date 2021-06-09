@@ -17,7 +17,7 @@ import com.google.firebase.database.*
 import estg.cm.letscook.firebase.Adapter
 import estg.cm.letscook.firebase.Recipe
 
-//
+////
 class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
     private lateinit var dbref : DatabaseReference
     private lateinit var recipeRecyclerView: RecyclerView
