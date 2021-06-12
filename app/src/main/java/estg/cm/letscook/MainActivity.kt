@@ -2,12 +2,20 @@ package estg.cm.letscook
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.SearchView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import estg.cm.letscook.firebase.Adapter
 import estg.cm.letscook.firebase.Recipe
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
     private lateinit var dbref : DatabaseReference
@@ -21,31 +29,33 @@ class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
         val category = intent?.getStringExtra("EXTRA_CATEGORY")!!
 
         recipeRecyclerView = findViewById(R.id.recipeList)
+
+        recipeArrayList = arrayListOf()
+
+        val adapter = Adapter(this@MainActivity, recipeArrayList)
+        recipeRecyclerView.adapter = adapter
         recipeRecyclerView.layoutManager = LinearLayoutManager(this)
         recipeRecyclerView.setHasFixedSize(true)
-
-        recipeArrayList = arrayListOf<Recipe>()
 
         dbref = FirebaseDatabase.getInstance("https://let-s-cook-7ef9a-default-rtdb.europe-west1.firebasedatabase.app/").getReference(
             "Recipes"
         )
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 if (snapshot.exists()) {
                     for (recipeSnapshot in snapshot.children) {
                         if (recipeSnapshot.child("category").value == category) {
                             val recipe = recipeSnapshot.getValue(Recipe::class.java)
+                            Log.i("searchRecipe", recipe.toString())
                             recipeArrayList.add(recipe!!)
                         }
                     }
-                    val adapter = Adapter(this@MainActivity, recipeArrayList)
-                    recipeRecyclerView.adapter = adapter
+                    adapter.submitList(recipeArrayList)
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.e("Firebase", error.toString())
             }
         })
     }
@@ -61,7 +71,7 @@ class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
     }
 
     override fun onStartClick(currentItem: Recipe) {
-        val recipe =  arrayListOf<Recipe>()
+        val recipe = arrayListOf<Recipe>()
         recipe.add(currentItem)
 
         val intent = Intent(this@MainActivity, RecipeStep::class.java).apply {
@@ -69,5 +79,4 @@ class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
         }
         startActivity(intent)
     }
-
 }

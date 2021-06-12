@@ -27,7 +27,6 @@ class RecipeFilters : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_filters)
 
-
         appetizers = findViewById(R.id.recipeFilters_appetizers)
         breakFast = findViewById(R.id.recipeFilters_breakfast)
         desserts = findViewById(R.id.recipeFilters_desserts)
@@ -42,44 +41,43 @@ class RecipeFilters : AppCompatActivity() {
         Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/let-s-cook-7ef9a.appspot.com/o/Filters%2Fdrinks.jpg?alt=media&token=4173f881-a6ff-44fb-ab1b-679f4cf52737").resize(150, 150).centerCrop().into(drinks)
         Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/let-s-cook-7ef9a.appspot.com/o/Filters%2Fvegan.jpg?alt=media&token=d35472b7-2e73-4f49-b8a3-8dbebb2572d2").resize(150, 150).centerCrop().into(vegan)
 
-        var category = ""
         appetizers.setOnClickListener {
-            category = "APPETIZERS"
+            val category = "APPETIZERS"
             val intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("EXTRA_CATEGORY", category)
             }
             startActivity(intent)
         }
         breakFast.setOnClickListener {
-            category = "BREAKFAST"
+            val category = "BREAKFAST"
             val intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("EXTRA_CATEGORY", category)
             }
             startActivity(intent)
         }
         desserts.setOnClickListener {
-            category = "DESSERTS"
+            val category = "DESSERTS"
             val intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("EXTRA_CATEGORY", category)
             }
             startActivity(intent)
         }
         drinks.setOnClickListener {
-            category = "DRINKS"
+            val category = "DRINKS"
             val intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("EXTRA_CATEGORY", category)
             }
             startActivity(intent)
         }
         vegan.setOnClickListener {
-            category = "VEGAN"
+            val category = "VEGAN"
             val intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("EXTRA_CATEGORY", category)
             }
             startActivity(intent)
         }
         mainDishes.setOnClickListener {
-            category = "MAINDISHES"
+            val category = "MAINDISHES"
             val intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("EXTRA_CATEGORY", category)
             }

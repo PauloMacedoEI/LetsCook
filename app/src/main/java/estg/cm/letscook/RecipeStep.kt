@@ -71,6 +71,7 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
         tts = TextToSpeech(this, this)
 
         stepForward.setOnClickListener {
+            if (tts!!.isSpeaking) tts!!.stop()
             timer.cancel()
             step++
 
@@ -90,6 +91,7 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         stepBack.setOnClickListener {
+            if (tts!!.isSpeaking) tts!!.stop()
             timer.cancel()
             step--
 
@@ -137,7 +139,7 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
         stepDescription.text = step.description
 
-        var sDuration = ""
+
         val minutes = step.duration.toLong()
         val duration: Long = TimeUnit.MINUTES.toMillis(minutes)
 
@@ -150,14 +152,24 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
             @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
             override fun onTick(l: Long) {
                 secondsRemaining--
-                sDuration = String.format(
-                    Locale.ENGLISH,"%02d : %02d",
-                    TimeUnit.MILLISECONDS.toMinutes(l),
-                    TimeUnit.MILLISECONDS.toSeconds(l) -
-                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)))
+                val sDuration = if(step.duration > 59) {
+                    String.format(
+                        Locale.ENGLISH,"%02d : %02d : %02d",
+                        TimeUnit.MILLISECONDS.toHours(l),
+                        TimeUnit.MILLISECONDS.toMinutes(l) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(l)),
+                        TimeUnit.MILLISECONDS.toSeconds(l) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)))
+
+                } else {
+                    String.format(
+                        Locale.ENGLISH,"%02d : %02d",
+                        TimeUnit.MILLISECONDS.toMinutes(l),
+                        TimeUnit.MILLISECONDS.toSeconds(l) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)))
+                }
                 countdown.text = sDuration
                 timerProgressBar.progress = seconds - secondsRemaining
                 when (sDuration) {
+                    "00 : 00 : 20" -> twentySecWarning()
+                    "00 : 00 : 00" -> finishWarning()
                     "00 : 20" -> twentySecWarning()
                     "00 : 00" -> finishWarning()
                 }
@@ -169,6 +181,7 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
+            if (tts!!.isSpeaking) tts!!.stop()
             timer.cancel()
             timer.start()
         }, 1000)
