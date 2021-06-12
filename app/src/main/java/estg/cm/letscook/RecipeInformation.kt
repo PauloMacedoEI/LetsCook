@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
-import android.widget.TextClock
 import android.widget.TextView
-import androidx.lifecycle.ViewModel
 import com.makeramen.roundedimageview.RoundedTransformationBuilder
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
@@ -21,15 +19,13 @@ class RecipeInformation : AppCompatActivity() {
     private lateinit var duration: TextView
     private lateinit var ingredients: TextView
     private lateinit var steps: TextView
-
+    private lateinit var video: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_information)
 
         val recipe = intent?.getParcelableArrayListExtra<Recipe>("EXTRA_RECIPE")
-        Log.i("cucu", recipe.toString())
-
 
         titleText = findViewById(R.id.item_title_information)
         image = findViewById(R.id.item_image_information)
@@ -38,14 +34,13 @@ class RecipeInformation : AppCompatActivity() {
         servings = findViewById(R.id.item_servings_information)
         ingredients = findViewById(R.id.item_ingredients)
         steps = findViewById(R.id.item_steps)
-
+        video = findViewById(R.id.item_youtube_icon_information)
 
         startButton.setOnClickListener {
             val recipe2 =  arrayListOf<Recipe>()
             recipe?.get(0)?.let { it1 -> recipe2.add(it1) }
-            Log.i("cucu3", recipe2[0].title)
 
-            val intent = Intent(this, StepRecipe::class.java).apply {
+            val intent = Intent(this, RecipeStep::class.java).apply {
                 putExtra("EXTRA_RECIPE", recipe2)
             }
             startActivity(intent)

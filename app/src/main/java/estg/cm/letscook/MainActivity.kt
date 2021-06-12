@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
         val recipe =  arrayListOf<Recipe>()
         recipe.add(currentItem)
 
-        val intent = Intent(this@MainActivity, StepRecipe::class.java).apply {
+        val intent = Intent(this@MainActivity, RecipeStep::class.java).apply {
             putExtra("EXTRA_RECIPE", recipe)
         }
         startActivity(intent)
