@@ -1,15 +1,14 @@
 package estg.cm.letscook
 
+import android.graphics.Color
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -30,6 +29,8 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var stepDuration: TextView
     private lateinit var stepDescription: TextView
     private lateinit var countdown: TextView
+    private lateinit var video: VideoView
+    private lateinit var mediaController: MediaController
 
     private lateinit var timerRingSound: MediaPlayer
     private lateinit var timerProgressBar: ProgressBar
@@ -56,6 +57,7 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
         countdown = findViewById(R.id.recipeStep_step_countdown)
         timerRingSound = MediaPlayer.create(this, R.raw.alarme)
         timerProgressBar = findViewById(R.id.recipeStep_step_progressBar)
+        video = findViewById(R.id.videoViewRecipe)
 
         recipe = intent?.getParcelableArrayListExtra("EXTRA_RECIPE")!!
 
@@ -65,6 +67,9 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
                 .oval(false)
                 .build()
         Picasso.get().load(recipe[0].image).resize(1000, 600).centerCrop().transform(transformation).into(image)
+
+        mediaController = MediaController(this)
+        mediaController.setAnchorView(video)
 
         populateStepFields(step)
 
@@ -188,6 +193,13 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
         Handler(Looper.getMainLooper()).postDelayed({
             readDescription()
         }, 2000)
+
+        val url = step.video
+        val uri = Uri.parse(url)
+
+        video.setMediaController(mediaController)
+        video.setVideoURI(uri)
+        video.requestFocus()
     }
 
     override fun onInit(status: Int) {
