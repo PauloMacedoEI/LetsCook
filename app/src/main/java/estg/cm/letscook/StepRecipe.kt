@@ -24,7 +24,7 @@ class StepRecipe : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var durationStep: TextView
     private lateinit var countdown: TextView
     private lateinit var timerRingSound: MediaPlayer
-
+//
     private var tts: TextToSpeech? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
