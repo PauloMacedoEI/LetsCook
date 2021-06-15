@@ -24,7 +24,7 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var image: ImageView
     private lateinit var stepForward: ImageView
     private lateinit var stepBack: ImageView
-
+//
     private lateinit var titleText : TextView
     private lateinit var stepTitle: TextView
     private lateinit var stepDuration: TextView
