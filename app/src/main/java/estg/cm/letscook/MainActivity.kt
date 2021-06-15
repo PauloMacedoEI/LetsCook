@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), Adapter.OnRecipeClickListener {
     private lateinit var dbref : DatabaseReference
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var recipeArrayList: ArrayList<Recipe>
-
+//
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
