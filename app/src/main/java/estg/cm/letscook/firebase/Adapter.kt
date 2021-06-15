@@ -1,27 +1,18 @@
 package estg.cm.letscook.firebase
 
-import android.content.Intent
-import android.content.res.Resources
-import android.graphics.Color
-import android.net.wifi.hotspot2.pps.HomeSp
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-
 import androidx.recyclerview.widget.RecyclerView
 import com.makeramen.roundedimageview.RoundedTransformationBuilder
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
-import estg.cm.letscook.MainActivity
 import estg.cm.letscook.R
-import estg.cm.letscook.RecipeInformation
-
 
 class Adapter(private val listener: OnRecipeClickListener, private val recipeList: ArrayList<Recipe>) : ListAdapter<Recipe, Adapter.MyViewHolder>(RecipesComparator())  {
         private lateinit var currentItem: Recipe
@@ -37,19 +28,17 @@ class Adapter(private val listener: OnRecipeClickListener, private val recipeLis
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+            Log.i("searchRecipeAdapter",recipeList.toString())
             val itemView = LayoutInflater.from(parent.context).inflate(
                 R.layout.recyclerview_item,
                 parent,
                 false
             )
             return MyViewHolder(itemView)
-
-
         }
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             currentItem = recipeList[position]
-
 
             holder.title.text = currentItem.title
             val transformation: Transformation = RoundedTransformationBuilder()
@@ -96,14 +85,10 @@ class Adapter(private val listener: OnRecipeClickListener, private val recipeLis
                     }
                 }
             }
-
-
         }
 
         interface OnRecipeClickListener{
             fun onRecipeClick(currentItem: Recipe)
             fun onStartClick(currentItem: Recipe)
-
         }
-
 }

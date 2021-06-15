@@ -2,7 +2,6 @@
     <!--    APP    -->
     <string name="app_name">Let\'s Cook</string>
 
-    <!--    APP    -->
     <string name="recyclerview_item_start">START</string>
     <string name="recyclerview_item_recipe">RECIPE</string>
 
@@ -23,4 +22,10 @@
     <string name="recipeFilters_vegan">Vegan</string>
     <string name="recipeFilters_drinks">Drinks</string>
     <string name="recipeFilters_mainDishes">Main Dishes</string>
+    <string name="recipeStep_step_title">Step</string>
+
+    <!--    AUDIOS    -->
+    <string name="twentySecWarning">20 seconds left</string>
+    <string name="finishWarning">time is up</string>
+    <string name="countdownFinishWarning">time is up</string>
 </resources>
