@@ -23,7 +23,7 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var image: ImageView
     private lateinit var stepForward: ImageView
     private lateinit var stepBack: ImageView
-//
+    //
     private lateinit var titleText : TextView
     private lateinit var stepTitle: TextView
     private lateinit var stepDuration: TextView
@@ -124,23 +124,23 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
             val hours = step.duration / 60
             val minutes = step.duration % 60
             stepTitle.text = stepNumber.toString()
-                .plus("º ")
-                .plus(getString(R.string.recipeStep_step_title))
-                .plus(" (")
+                    .plus("º ")
+                    .plus(getString(R.string.recipeStep_step_title))
+                    .plus(" (")
             stepDuration.text = hours.toString()
-                .plus(getString(R.string.recipe_information_hours))
-                .plus(" ")
-                .plus(minutes.toString())
-                .plus(getString(R.string.recipe_information_minutes))
-                .plus(")")
+                    .plus(getString(R.string.recipe_information_hours))
+                    .plus(" ")
+                    .plus(minutes.toString())
+                    .plus(getString(R.string.recipe_information_minutes))
+                    .plus(")")
         } else {
             stepTitle.text = stepNumber.toString()
-                .plus("º ")
-                .plus(getString(R.string.recipeStep_step_title))
-                .plus(" (")
+                    .plus("º ")
+                    .plus(getString(R.string.recipeStep_step_title))
+                    .plus(" (")
             stepDuration.text = step.duration.toString()
-                .plus(getString(R.string.recipe_information_minutes))
-                .plus(")")
+                    .plus(getString(R.string.recipe_information_minutes))
+                    .plus(")")
         }
         stepDescription.text = step.description
 
@@ -159,16 +159,16 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
                 secondsRemaining--
                 val sDuration = if(step.duration > 59) {
                     String.format(
-                        Locale.ENGLISH,"%02d : %02d : %02d",
-                        TimeUnit.MILLISECONDS.toHours(l),
-                        TimeUnit.MILLISECONDS.toMinutes(l) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(l)),
-                        TimeUnit.MILLISECONDS.toSeconds(l) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)))
+                            Locale.ENGLISH,"%02d : %02d : %02d",
+                            TimeUnit.MILLISECONDS.toHours(l),
+                            TimeUnit.MILLISECONDS.toMinutes(l) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(l)),
+                            TimeUnit.MILLISECONDS.toSeconds(l) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)))
 
                 } else {
                     String.format(
-                        Locale.ENGLISH,"%02d : %02d",
-                        TimeUnit.MILLISECONDS.toMinutes(l),
-                        TimeUnit.MILLISECONDS.toSeconds(l) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)))
+                            Locale.ENGLISH,"%02d : %02d",
+                            TimeUnit.MILLISECONDS.toMinutes(l),
+                            TimeUnit.MILLISECONDS.toSeconds(l) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)))
                 }
                 countdown.text = sDuration
                 timerProgressBar.progress = seconds - secondsRemaining
@@ -207,9 +207,9 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             val result = tts?.isLanguageAvailable(Locale("pt"))
-                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    Log.e("TTS","The Language specified is not supported!")
-                }
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS","The Language specified is not supported!")
+            }
         } else {
             Log.e("TTS", "Initialization Failed!")
         }
