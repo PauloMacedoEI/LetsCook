@@ -68,8 +68,8 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
                 .build()
         Picasso.get().load(recipe[0].image).resize(1000, 600).centerCrop().transform(transformation).into(image)
 
-        mediaController = MediaController(this)
-        mediaController.setAnchorView(video)
+
+
 
         populateStepFields(step)
 
@@ -197,6 +197,8 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
         val url = step.video
         val uri = Uri.parse(url)
 
+        mediaController = MediaController(this)
+        mediaController.setAnchorView(video)
         video.setMediaController(mediaController)
         video.setVideoURI(uri)
         video.requestFocus()

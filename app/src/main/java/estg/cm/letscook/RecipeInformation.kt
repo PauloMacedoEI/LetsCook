@@ -3,22 +3,23 @@ package estg.cm.letscook
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.Slide
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.makeramen.roundedimageview.RoundedTransformationBuilder
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
 import estg.cm.letscook.firebase.Recipe
+
 
 class RecipeInformation : AppCompatActivity() {
     private lateinit var titleText : TextView
@@ -89,12 +90,12 @@ class RecipeInformation : AppCompatActivity() {
 
             val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-            val view = inflater.inflate(R.layout.popup_window,null)
+            val view = inflater.inflate(R.layout.popup_window, null)
 
             val popupWindow = PopupWindow(
-                view, // Custom view to show in popup window
-                LinearLayout.LayoutParams.WRAP_CONTENT, // Width of popup window
-                LinearLayout.LayoutParams.WRAP_CONTENT // Window height
+                    view, // Custom view to show in popup window
+                    LinearLayout.LayoutParams.WRAP_CONTENT, // Width of popup window
+                    LinearLayout.LayoutParams.WRAP_CONTENT // Window height
             )
 
             //popupWindow.setBackgroundDrawable(ColorDrawable(R.color.black))
@@ -132,17 +133,18 @@ class RecipeInformation : AppCompatActivity() {
 
             TransitionManager.beginDelayedTransition(rootLayout)
             popupWindow.showAtLocation(
-                rootLayout, // Location to display popup window
-                Gravity.CENTER, // Exact position of layout to display popup
-                0, // X offset
-                0 // Y offset
+                    rootLayout, // Location to display popup window
+                    Gravity.CENTER, // Exact position of layout to display popup
+                    0, // X offset
+                    0 // Y offset
             )
 
             val closePopup = view.findViewById<ImageView>(R.id.closePopup)
 
             closePopup.setOnClickListener{
                 popupWindow.dismiss()
-                rootLayout.setBackgroundColor(Color.TRANSPARENT)
+
+                rootLayout.setBackgroundResource(R.drawable.app_background)
                 rootLayout.alpha = 1F
             }
         }
