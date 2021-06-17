@@ -1,6 +1,8 @@
 package estg.cm.letscook
 
 import android.graphics.Color
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.*
@@ -18,8 +20,11 @@ import com.squareup.picasso.Transformation
 import estg.cm.letscook.firebase.Recipe
 import java.util.*
 import java.util.concurrent.TimeUnit
+import android.content.Context
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 
-class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
+class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener, SensorEventListener {
     private lateinit var image: ImageView
     private lateinit var stepForward: ImageView
     private lateinit var stepBack: ImageView
@@ -41,6 +46,15 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var step = 0
     private var recipe: ArrayList<Recipe> = arrayListOf()
 
+
+    private var time = System.currentTimeMillis()
+    private var anterior: Long = 2500
+    private var time1: Long = 0
+    private var time2: Long = 0
+    private val twoTouchs = 1000
+    private lateinit var sensorManager: SensorManager
+    private var proximity: Sensor? = null
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +73,9 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
         timerProgressBar = findViewById(R.id.recipeStep_step_progressBar)
         video = findViewById(R.id.videoViewRecipe)
 
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
+
         recipe = intent?.getParcelableArrayListExtra("EXTRA_RECIPE")!!
 
         titleText.text = recipe[0].title
@@ -68,8 +85,8 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
                 .build()
         Picasso.get().load(recipe[0].image).resize(1000, 600).centerCrop().transform(transformation).into(image)
 
-
-
+        mediaController = MediaController(this)
+        mediaController.setAnchorView(video)
 
         populateStepFields(step)
 
@@ -93,6 +110,7 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
                 stepNumber++
                 populateStepFields(step)
             }
+
         }
 
         stepBack.setOnClickListener {
@@ -113,7 +131,118 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
                 stepNumber--
                 populateStepFields(step)
             }
+            //video.start()
         }
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+        // Do something here if sensor accuracy changes.
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onSensorChanged(event: SensorEvent) {
+        val distance = event.values[0]
+        // Do something with this sensor data.
+
+//        if (distance < proximity?.maximumRange!!) {
+//            //Toast.makeText(this, "passou uma mao", Toast.LENGTH_SHORT).show()
+//            window.decorView.setBackgroundColor(Color.GREEN)
+//
+//        } else {
+//            window.decorView.setBackgroundColor(Color.BLACK)
+//        }
+        when (distance) {
+            (0.0).toFloat() ->
+                if (time1 == 0.toLong()) {
+                    time1 = System.currentTimeMillis()
+                    Log.i("time1", time1.toString())
+                } else if (System.currentTimeMillis() - time1 > anterior) {
+                    time1 = System.currentTimeMillis()
+                    Log.i("time1", time1.toString())
+                }
+                else if (time2 == 0.toLong()/* && System.currentTimeMillis() - time1 < anterior*/) {
+                    time2 = System.currentTimeMillis()
+                    Log.i("time2", time2.toString())
+                } /*else {
+                    time1 = 0
+                    time2 = 0
+                }*/
+        }
+
+        if (time1 != 0.toLong()) {
+            if (time2 != 0.toLong()) {
+                if (time2 - time1 < twoTouchs) {
+                    if (tts!!.isSpeaking) tts!!.stop()
+                    timer.cancel()
+                    step++
+
+                    if(step == recipe[0].steps.size - 1) {
+                        // Toast.makeText(this, "Nao existe mais passos!", Toast.LENGTH_SHORT).show()
+                        stepForward.isInvisible = true
+                        stepBack.isVisible = true
+                    } else {
+                        stepForward.isVisible = true
+                        stepBack.isVisible = true
+                    }
+
+                    if(step <= recipe[0].steps.size - 1) {
+                        stepNumber++
+                        populateStepFields(step)
+                    }
+
+                    //Toast.makeText(this, "Proximo Passo", Toast.LENGTH_SHORT).show()
+                    val resultado = time2 - time1;
+                    Log.i("result", resultado.toString())
+                    time1 = 0
+                    time2 = 0
+                } else if (time2 - time1 < anterior) {
+
+                    if (tts!!.isSpeaking) tts!!.stop()
+                    timer.cancel()
+                    step--
+
+                    if(step == 0) {
+                        // Toast.makeText(this, "Este é o primeiro passo!", Toast.LENGTH_SHORT).show()
+                        stepForward.isVisible = true
+                        stepBack.isInvisible = true
+                    } else {
+                        stepForward.isVisible = true
+                        stepBack.isVisible = true
+                    }
+
+                    if(step >= 0) {
+                        stepNumber--
+                        populateStepFields(step)
+                    }
+
+                    //Toast.makeText(this, "Passo anterior", Toast.LENGTH_SHORT).show()
+                    val resultado = time2 - time1;
+                    Log.i("result", resultado.toString())
+
+                    time1 = 0
+                    time2 = 0
+                } else {
+                    time1 = 0
+                    time2 = 0
+                }
+            }
+
+        }
+    }
+
+    override fun onResume() {
+        // Register a listener for the sensor.
+        super.onResume()
+
+        proximity?.also { proximity ->
+            sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+    }
+
+    override fun onPause() {
+        // Be sure to unregister the sensor when the activity pauses.
+        super.onPause()
+        sensorManager.unregisterListener(this)
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -197,11 +326,10 @@ class RecipeStep : AppCompatActivity(), TextToSpeech.OnInitListener {
         val url = step.video
         val uri = Uri.parse(url)
 
-        mediaController = MediaController(this)
-        mediaController.setAnchorView(video)
         video.setMediaController(mediaController)
         video.setVideoURI(uri)
         video.requestFocus()
+
     }
 
     override fun onInit(status: Int) {
