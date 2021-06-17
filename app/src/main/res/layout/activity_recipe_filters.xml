@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:baselineAligned="false"
+    android:background="@drawable/app_background" >
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/recipeFilters_appetizers"
+                            android:layout_width="0dp"
+                            android:layout_height="175dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:alpha="0.5"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/appetizers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/recipeFilters_appetizers"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_appetizers"
+                            app:layout_constraintEnd_toEndOf="@+id/recipeFilters_appetizers"
+                            app:layout_constraintStart_toStartOf="@+id/recipeFilters_appetizers"
+                            app:layout_constraintTop_toTopOf="@+id/recipeFilters_appetizers" />
+
+                        <ImageView
+                            android:id="@+id/recipeFilters_mainDishes"
+                            android:layout_width="0dp"
+                            android:layout_height="175dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:alpha="0.5"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/recipeFilters_appetizers" />
+
+                        <TextView
+                            android:id="@+id/maindishes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/recipeFilters_mainDishes"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_mainDishes"
+                            app:layout_constraintEnd_toEndOf="@+id/recipeFilters_mainDishes"
+                            app:layout_constraintStart_toEndOf="@+id/recipeFilters_mainDishes"
+                            app:layout_constraintStart_toStartOf="@+id/recipeFilters_mainDishes"
+                            app:layout_constraintTop_toTopOf="@+id/recipeFilters_mainDishes" />
+
+                        <ImageView
+                            android:id="@+id/recipeFilters_breakfast"
+                            android:layout_width="0dp"
+                            android:layout_height="175dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="8dp"
+                            android:alpha="0.5"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/recipeFilters_mainDishes" />
+
+                        <TextView
+                            android:id="@+id/breakfast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/recipeFilters_breakfast"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_breakfast"
+                            app:layout_constraintEnd_toEndOf="@+id/recipeFilters_breakfast"
+                            app:layout_constraintStart_toStartOf="@+id/recipeFilters_breakfast"
+                            app:layout_constraintTop_toTopOf="@+id/recipeFilters_breakfast" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/recipeFilters_drinks"
+                            android:layout_width="0dp"
+                            android:layout_height="175dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:alpha="0.5"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/drinks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/recipeFilters_drinks"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_drinks"
+                            app:layout_constraintEnd_toEndOf="@+id/recipeFilters_drinks"
+                            app:layout_constraintStart_toStartOf="@+id/recipeFilters_drinks"
+                            app:layout_constraintTop_toTopOf="@+id/recipeFilters_drinks" />
+
+                        <ImageView
+                            android:id="@+id/recipeFilters_desserts"
+                            android:layout_width="0dp"
+                            android:layout_height="175dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:alpha="0.5"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/recipeFilters_drinks" />
+
+                        <TextView
+                            android:id="@+id/desserts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/recipeFilters_deserts"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_desserts"
+                            app:layout_constraintEnd_toEndOf="@+id/recipeFilters_desserts"
+                            app:layout_constraintStart_toStartOf="@+id/recipeFilters_desserts"
+                            app:layout_constraintTop_toTopOf="@+id/recipeFilters_desserts" />
+
+                        <ImageView
+                            android:id="@+id/recipeFilters_vegan"
+                            android:layout_width="0dp"
+                            android:layout_height="175dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:alpha="0.5"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/recipeFilters_desserts" />
+
+                        <TextView
+                            android:id="@+id/vegan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/recipeFilters_vegan"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/recipeFilters_vegan"
+                            app:layout_constraintEnd_toEndOf="@+id/recipeFilters_vegan"
+                            app:layout_constraintStart_toStartOf="@+id/recipeFilters_vegan"
+                            app:layout_constraintTop_toTopOf="@+id/recipeFilters_vegan" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

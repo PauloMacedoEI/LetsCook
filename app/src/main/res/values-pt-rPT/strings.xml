@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Let\'s Cook</string>
+    <string name="recyclerview_item_start">INICIAR</string>
+    <string name="recyclerview_item_recipe">RECEITA</string>
+    <string name="recipe_information_video">VÍDEO</string>
+    <string name="recipe_information_servings">porções</string>
+    <string name="recipe_information_ingredient">Ingredientes</string>
+    <string name="recipe_information_steps">Preparação</string>
+    <string name="recipeFilters_appetizers">Entradas</string>
+    <string name="recipeFilters_breakfast">Pequeno-Almoço</string>
+    <string name="recipeFilters_deserts">Sobremesas</string>
+    <string name="recipeFilters_vegan">Vegan</string>
+    <string name="recipeFilters_drinks">Bebidas</string>
+    <string name="recipeFilters_mainDishes">Pratos Principais</string>
+    <string name="recipeStep_step_title">Passo</string>
+
+    <!--    AUDIOS    -->
+    <string name="twentySecWarning">Faltam 20 segundos</string>
+    <string name="finishWarning">O tempo acabou</string>
+    <string name="countdownFinishWarning">O tempo acabou</string>
+</resources>

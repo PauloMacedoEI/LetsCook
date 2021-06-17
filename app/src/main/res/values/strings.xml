@@ -1,3 +1,31 @@
 <resources>
+    <!--    APP    -->
     <string name="app_name">Let\'s Cook</string>
+
+    <string name="recyclerview_item_start">START</string>
+    <string name="recyclerview_item_recipe">RECIPE</string>
+
+    <string name="recyclerview_item_image" translatable="false">ITEM IMAGE</string>
+    <string name="recyclerview_item_image_start" translatable="false">START IMAGE</string>
+    <string name="recyclerview_item_image_recipe" translatable="false">RECIPE IMAGE</string>
+    <string name="recyclerview_item_image_servings" translatable="false">SERVINGS IMAGE</string>
+    <string name="recyclerview_item_image_duration" translatable="false">DURATION IMAGE</string>
+    <string name="recipe_information_video">VIDEO</string>
+    <string name="recipe_information_hours" translatable="false">h</string>
+    <string name="recipe_information_minutes" translatable="false">min</string>
+    <string name="recipe_information_servings">servings</string>
+    <string name="recipe_information_ingredient">Ingredients</string>
+    <string name="recipe_information_steps">Preparation</string>
+    <string name="recipeFilters_appetizers">Appetizers</string>
+    <string name="recipeFilters_breakfast">BreakFast</string>
+    <string name="recipeFilters_deserts">Deserts</string>
+    <string name="recipeFilters_vegan">Vegan</string>
+    <string name="recipeFilters_drinks">Drinks</string>
+    <string name="recipeFilters_mainDishes">Main Dishes</string>
+    <string name="recipeStep_step_title">Step</string>
+
+    <!--    AUDIOS    -->
+    <string name="twentySecWarning">20 seconds left</string>
+    <string name="finishWarning">time is up</string>
+    <string name="countdownFinishWarning">time is up</string>
 </resources>
